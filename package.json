@@ -1,8 +1,8 @@
 {
-  "name": "shell-pic-bed",
+  "name": "markdown-image-bed-by-scp",
   "publisher": "mawen",
-  "displayName": "shell-pic-bed",
-  "description": "pic bed for shell",
+  "displayName": "markdown image bed by scp",
+  "description": "利用scp上传图床，返回markdown的照片格式，github: https://github.com/mawendaxiong/vsc-plugin-shell_pic_bed",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.72.0"
@@ -33,41 +33,48 @@
       "type": "object",
       "title": "shellPicBed",
       "properties": {
-          "shellPicBed.pic-local-path":{
-            "type": "string",
-            "default": "",
-            "description":"本地图片存放位置 || Local photo storage path"
-          },
-          "shellPicBed.ssh-key":{
-            "type": "string",
-            "default": "",
-            "description":"登录服务器的私钥，请配置一个不需要输出密码的私钥 || server private key without password"
-          },
-          "shellPicBed.server-user":{
-            "type": "string",
-            "default": "",
-            "description":"服务器的用户 || server user"
-          },
-          "shellPicBed.server-storage-path":{
-            "type": "string",
-            "default": "",
-            "description":"照片存放到服务器的路径 || server image path"
-          },
-          "shellPicBed.server-domain":{
-            "type": "string",
-            "default": "",
-            "description":"服务域名或者ip || server domain or ip"
-          },
-          "shellPicBed.access-image-port":{
-            "type": "string",
-            "default": "",
-            "description":"访问照片的端口，例如nginx || which port can access image,such as nginx"
-          },
-          "shellPicBed.access-image-url":{
-            "type": "string",
-            "default": "",
-            "description":"访问照片的路径，例如nginx,结合access-image-port使用 || which url path can access image,such as nginx"
-          }
+        "shellPicBed.pic-local-path": {
+          "order": 1,
+          "type": "string",
+          "default": "",
+          "markdownDescription": "本地图片存放位置，绝对路径  \nLocal photo storage path,absolute path  \n例子：`/home/foo/markdown/images`"
+        },
+        "shellPicBed.ssh-key": {
+          "order": 2,
+          "type": "string",
+          "default": "",
+          "markdownDescription": "登录服务器的ssh key的**私钥**，请配置一个**不需要输出密码的**私钥  \nserver ssh key of **private key**, **without password**  \n例子：`/home/.ssh/image-key`"
+        },
+        "shellPicBed.server-user": {
+          "order": 3,
+          "type": "string",
+          "default": "",
+          "markdownDescription": "服务器的用户  \nserver user \n例子：`ubuntu`，`root`"
+        },
+        "shellPicBed.server-storage-path": {
+          "order": 4,
+          "type": "string",
+          "default": "",
+          "markdownDescription": "照片存放到服务器的`绝对路径`  \nserver image `absolute path`  \n例子：`/home/ubuntu/markdown/images`"
+        },
+        "shellPicBed.server-domain": {
+          "order": 5,
+          "type": "string",
+          "default": "",
+          "markdownDescription": "服务域名或者ip，带上`http`或者`https`  \nserver domain or ip,with `http` or `https`  \n例子：`http://192.168.1.1`，`http://foo.com`"
+        },
+        "shellPicBed.access-image-port": {
+          "order": 6,
+          "type": "string",
+          "default": "",
+          "markdownDescription": "http服务器（例如`nginx`）访问端口  \nhttp server(such as `nginx` )  \n例子：`8080`，`8090`"
+        },
+        "shellPicBed.access-image-url": {
+          "order": 7,
+          "type": "string",
+          "default": "",
+          "markdownDescription": "http服务器访问照片的路径，末尾记得带上`/`  \nhttp server access image path,end with `/`  \n例子：`/my/markdown/pic/`，结合`port`和`domain`，访问url为`http(s)://192.168.1.1:8090/my/markdown/pic/some-image`"
+        }
       }
     }
   },
