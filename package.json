@@ -1,0 +1,104 @@
+{
+  "name": "shell-pic-bed",
+  "publisher": "mawen",
+  "displayName": "shell-pic-bed",
+  "description": "pic bed for shell",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:shell-pic-bed.helloWorld"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "shell-pic-bed.helloWorld",
+        "title": "shellpicbed"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "shell-pic-bed.helloWorld",
+        "key": "alt+shift+v",
+        "mac": "alt+shift+v",
+        "when": "editorLangId == markdown"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "shellPicBed",
+      "properties": {
+          "shellPicBed.pic-local-path":{
+            "type": "string",
+            "default": "",
+            "description":"本地图片存放位置 || Local photo storage path"
+          },
+          "shellPicBed.ssh-key":{
+            "type": "string",
+            "default": "",
+            "description":"登录服务器的私钥，请配置一个不需要输出密码的私钥 || server private key without password"
+          },
+          "shellPicBed.server-user":{
+            "type": "string",
+            "default": "",
+            "description":"服务器的用户 || server user"
+          },
+          "shellPicBed.server-storage-path":{
+            "type": "string",
+            "default": "",
+            "description":"照片存放到服务器的路径 || server image path"
+          },
+          "shellPicBed.server-domain":{
+            "type": "string",
+            "default": "",
+            "description":"服务域名或者ip || server domain or ip"
+          },
+          "shellPicBed.access-image-port":{
+            "type": "string",
+            "default": "",
+            "description":"访问照片的端口，例如nginx || which port can access image,such as nginx"
+          },
+          "shellPicBed.access-image-url":{
+            "type": "string",
+            "default": "",
+            "description":"访问照片的路径，例如nginx,结合access-image-port使用 || which url path can access image,such as nginx"
+          }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.72.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.24.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "image-size": "^1.0.2"
+  }
+}
