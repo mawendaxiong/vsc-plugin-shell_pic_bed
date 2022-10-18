@@ -2,8 +2,8 @@
   "name": "markdown-image-bed-by-scp",
   "publisher": "mawen",
   "displayName": "markdown image bed by scp",
-  "description": "利用scp上传图床，返回markdown的照片格式，github: https://github.com/mawendaxiong/vsc-plugin-shell_pic_bed",
-  "version": "0.0.1",
+  "description": "利用scp上传图床，返回markdown的照片格式，目前支持mac系统，windows和linux待测试，可以到github上提issue github: https://github.com/mawendaxiong/vsc-plugin-shell_pic_bed",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.72.0"
   },

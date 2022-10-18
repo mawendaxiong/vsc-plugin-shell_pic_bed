@@ -4,6 +4,9 @@ import { tmpdir } from 'os';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
+import i18n from './i18n/index';
+
+let locale = i18n();
 
 function editorEdit(selection: vscode.Selection | vscode.Position | undefined | null, text: string) :Promise<boolean> {
     return new Promise((resolve, reject) => {
@@ -61,7 +64,7 @@ function getPasteImage(imagePath: string) : Promise<string[]>{
 
             powershell.on('error', (e: any) => {
                 if (e.code === 'ENOENT') {
-                    // vscode.window.showErrorMessage(locale['powershell_not_found']);
+                    vscode.window.showErrorMessage(locale['powershell_not_found']);
                 } else {
                     vscode.window.showErrorMessage(e);
                 }
@@ -71,7 +74,7 @@ function getPasteImage(imagePath: string) : Promise<string[]>{
                 // console.debug('exit', code, signal);
             });
             powershell.stdout.on('data', (data) => {
-                // data.toString().split('\n').forEach(d => output += (d.indexOf('Active code page:') < 0 ? d + '\n' : ''));
+                data.toString().split('\n').forEach((d: string | string[]) => output += (d.indexOf('Active code page:') < 0 ? d + '\n' : ''));
                 clearTimeout(timer);
                 timer = setTimeout(() => powershell.kill(), 2000);
             });
@@ -113,7 +116,7 @@ function getPasteImage(imagePath: string) : Promise<string[]>{
             ascript.stdout.on('data', (data) => {
                 let result = data.toString().trim();
                 if (result === "no xclip") {
-                    // vscode.window.showInformationMessage(locale['install_xclip']);
+                    vscode.window.showInformationMessage(locale['install_xclip']);
                     return;
                 }
                 let match = decodeURI(result).trim().match(/((\/[^\/]+)+\/[^\/]*?\.(jpg|jpeg|gif|bmp|png))/g);
